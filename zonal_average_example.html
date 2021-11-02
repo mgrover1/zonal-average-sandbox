@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zonal Average with MOM and POP &#8212; Zonal Average Demo</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Introduction" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Zonal Average Demo</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Zonal Average with MOM and POP
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/zonal_average_example.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/zonal_average_example.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-in-data">
+   Read in Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pop-dataset">
+     POP Dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mom-dataset">
+     MOM Dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zonal-average-function">
+     Zonal Average Function
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="zonal-average-with-mom-and-pop">
+<h1>Zonal Average with MOM and POP<a class="headerlink" href="#zonal-average-with-mom-and-pop" title="Permalink to this headline">¶</a></h1>
+<p>Here, we use <a class="reference external" href="https://xhistogram.readthedocs.io/en/latest/">xhistogram</a> to calculate zonal averages from MOM and POP data!</p>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Import something here</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">xhistogram.xarray</span> <span class="kn">import</span> <span class="n">histogram</span>
+<span class="kn">import</span> <span class="nn">pop_tools</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="read-in-data">
+<h2>Read in Data<a class="headerlink" href="#read-in-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pop-dataset">
+<h3>POP Dataset<a class="headerlink" href="#pop-dataset" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="n">pop_tools</span><span class="o">.</span><span class="n">DATASETS</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;cesm_pop_monthly.T62_g17.nc&#39;</span><span class="p">)</span>
+<span class="n">pop_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+<span class="n">pop_grid</span> <span class="o">=</span> <span class="n">pop_tools</span><span class="o">.</span><span class="n">get_grid</span><span class="p">(</span><span class="s1">&#39;POP_gx1v7&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mom-dataset">
+<h3>MOM Dataset<a class="headerlink" href="#mom-dataset" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in the data using xarray or some other package</span>
+<span class="n">mom_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;../data/sample_mom_data.nc&#39;</span><span class="p">)</span>
+<span class="n">mom_grid</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;../data/mom_hybrid_z.003.mom6.static.nc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="zonal-average-function">
+<h3>Zonal Average Function<a class="headerlink" href="#zonal-average-function" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">zonal_average</span><span class="p">(</span><span class="n">da_in</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">lat_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lat_field</span><span class="o">=</span><span class="s1">&#39;geolat&#39;</span><span class="p">,</span> <span class="n">ydim</span><span class="o">=</span><span class="s1">&#39;yh&#39;</span><span class="p">,</span> <span class="n">xdim</span><span class="o">=</span><span class="s1">&#39;xh&#39;</span><span class="p">,</span> <span class="n">area_field</span><span class="o">=</span><span class="s1">&#39;area_t&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate a zonal average from some model on xarray.DataArray</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    </span>
+<span class="sd">    da_in : xarray.DataArray</span>
+<span class="sd">       DataArray to calculate a zonal average from. This should be your data variable</span>
+<span class="sd">       </span>
+<span class="sd">    grid : xarray.Dataset</span>
+<span class="sd">       Grid with the latitude, area field, and latitude axis (if needed), matching dims of da_in</span>
+<span class="sd">       </span>
+<span class="sd">    lat_axis : xarray.DataArray</span>
+<span class="sd">       Latitude axis to use for latitude bins</span>
+<span class="sd">    </span>
+<span class="sd">    lat_field : string</span>
+<span class="sd">       Name of the latitude field to use</span>
+<span class="sd">    </span>
+<span class="sd">    ydim : string</span>
+<span class="sd">       Name of y-dimension</span>
+<span class="sd">    </span>
+<span class="sd">    xdim : string</span>
+<span class="sd">       Name of x-dimension</span>
+<span class="sd">       </span>
+<span class="sd">    area_field : string</span>
+<span class="sd">       Field to use for the area values, used for weighting</span>
+<span class="sd">       </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    da_out : xarray.DataArray</span>
+<span class="sd">       Resultant zonally averaged field, with the same input name and a new latitude bin axis</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># If not provided a latitude axis, use the y-axis</span>
+    <span class="k">if</span> <span class="n">lat_axis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">lat_axis</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="n">ydim</span><span class="p">]</span>
+    
+    <span class="c1"># Access the area, latitude, and data array to zonal average</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="n">area_field</span><span class="p">]</span>
+    <span class="n">lat_2d</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="n">lat_field</span><span class="p">]</span>
+    
+    <span class="c1"># Create the latitude bins using the lat_axis data array</span>
+    <span class="n">bins</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">lat_axis</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="c1"># Calculate the numerator</span>
+    <span class="n">histVolCoordDepth</span> <span class="o">=</span> <span class="n">histogram</span><span class="p">(</span><span class="n">lat_2d</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="n">bins</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">area</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="n">ydim</span><span class="p">,</span> <span class="n">xdim</span><span class="p">])</span>
+    
+    <span class="c1"># Calculate the denominator</span>
+    <span class="n">histTVolCoordDepth</span> <span class="o">=</span> <span class="n">histogram</span><span class="p">(</span><span class="n">lat_2d</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="n">bins</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="p">(</span><span class="n">area</span><span class="o">*</span><span class="n">da_in</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="n">ydim</span><span class="p">,</span> <span class="n">xdim</span><span class="p">])</span>
+    
+    <span class="c1"># Return the zonal average, renaming the variable to the variable in</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">histTVolCoordDepth</span><span class="o">/</span><span class="n">histVolCoordDepth</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">da_in</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mom_test</span> <span class="o">=</span> <span class="n">zonal_average</span><span class="p">(</span><span class="n">mom_ds</span><span class="o">.</span><span class="n">FG_CO2</span><span class="p">,</span> <span class="n">mom_grid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mom_test</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1b185ca00&gt;]
+</pre></div>
+</div>
+<img alt="_images/zonal_average_example_10_1.png" src="_images/zonal_average_example_10_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_test</span> <span class="o">=</span> <span class="n">zonal_average</span><span class="p">(</span><span class="n">pop_ds</span><span class="o">.</span><span class="n">TEMP</span><span class="p">,</span> <span class="n">pop_grid</span><span class="p">,</span> <span class="n">lat_field</span><span class="o">=</span><span class="s1">&#39;TLAT&#39;</span><span class="p">,</span> <span class="n">area_field</span><span class="o">=</span><span class="s1">&#39;TAREA&#39;</span><span class="p">,</span> <span class="n">ydim</span><span class="o">=</span><span class="s1">&#39;nlat&#39;</span><span class="p">,</span>  <span class="n">xdim</span><span class="o">=</span><span class="s1">&#39;nlon&#39;</span><span class="p">,</span> <span class="n">lat_axis</span><span class="o">=</span><span class="n">pop_ds</span><span class="o">.</span><span class="n">lat_aux_grid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_test</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yincrease</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x1b1772640&gt;
+</pre></div>
+</div>
+<img alt="_images/zonal_average_example_12_1.png" src="_images/zonal_average_example_12_1.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Introduction</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By NCAR ESDS Team<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
